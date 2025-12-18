@@ -218,8 +218,7 @@
         @media (max-width: 768px) {
             .hero {
                 justify-content: center;
-                padding-top: 4rem;
-                padding-bottom: 2rem;
+                padding: 5rem 1.5rem 3rem;
                 gap: 1.5rem;
             }
         }
@@ -558,6 +557,11 @@
         @media (max-width: 768px) {
             .video-container {
                 aspect-ratio: 1 / 1;
+                max-height: 50svh;
+            }
+
+            .video-showcase {
+                max-width: min(95vw, 50svh);
             }
         }
 
