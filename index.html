@@ -215,6 +215,15 @@
             justify-content: flex-start;
         }
 
+        @media (max-width: 768px) {
+            .hero {
+                justify-content: center;
+                padding-top: 4rem;
+                padding-bottom: 2rem;
+                gap: 1.5rem;
+            }
+        }
+
         @keyframes gradientShift {
             0%, 100% {
                 background-position: 0% 0%;
@@ -336,6 +345,12 @@
             max-width: 800px;
             margin-bottom: clamp(1rem, 3vh, 4rem);
             flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                margin-bottom: 0;
+            }
         }
 
         .hero-badge {
