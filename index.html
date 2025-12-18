@@ -54,7 +54,7 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 1.5rem 4rem;
+            padding: clamp(0.75rem, 1.5vh, 1.5rem) clamp(1rem, 4vw, 4rem);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -64,12 +64,12 @@
         nav.scrolled {
             background: rgba(26, 47, 42, 0.95);
             backdrop-filter: blur(20px);
-            padding: 1rem 4rem;
+            padding: clamp(0.5rem, 1vh, 1rem) clamp(1rem, 4vw, 4rem);
         }
 
         .logo {
             font-family: 'Fraunces', serif;
-            font-size: 1.5rem;
+            font-size: clamp(1.1rem, calc(0.5vw + 0.5vh + 0.75rem), 1.5rem);
             font-weight: 600;
             color: white;
             text-decoration: none;
@@ -79,8 +79,8 @@
         }
 
         .logo-icon {
-            width: 32px;
-            height: 32px;
+            width: clamp(24px, 3vw, 32px);
+            height: clamp(24px, 3vw, 32px);
             background: linear-gradient(135deg, var(--luminous-mint), var(--mint-glow));
             border-radius: 8px;
             display: flex;
@@ -97,7 +97,7 @@
         .nav-links a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: clamp(0.8rem, 1vw, 0.95rem);
             font-weight: 500;
             transition: color 0.3s ease;
         }
@@ -109,9 +109,10 @@
         .nav-cta {
             background: linear-gradient(135deg, var(--amber), var(--amber-light));
             color: var(--charcoal) !important;
-            padding: 0.75rem 1.5rem;
+            padding: clamp(0.5rem, 1vh, 0.75rem) clamp(1rem, 2vw, 1.5rem);
             border-radius: 100px;
             font-weight: 600 !important;
+            font-size: clamp(0.8rem, 1vw, 0.95rem);
             transition: transform 0.3s ease, box-shadow 0.3s ease !important;
         }
 
@@ -120,11 +121,90 @@
             box-shadow: 0 10px 30px rgba(212, 165, 116, 0.4);
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 47, 42, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--luminous-mint);
+        }
+
+        .mobile-menu .nav-cta {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+
         /* Hero Section - Redesigned */
         .hero {
             position: relative;
-            min-height: 100vh;
-            padding: 10rem 4rem 6rem;
+            height: 100vh;
+            height: 100svh;
+            padding: clamp(5rem, 10vh, 10rem) clamp(1rem, 4vw, 4rem) clamp(1rem, 2vh, 3rem);
             background: linear-gradient(180deg, var(--deep-sage) 0%, #15241f 60%, var(--charcoal) 100%);
             background-size: 100% 200%;
             animation: gradientShift 12s ease-in-out infinite;
@@ -132,6 +212,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: flex-start;
         }
 
         @keyframes gradientShift {
@@ -253,7 +334,8 @@
             z-index: 2;
             text-align: center;
             max-width: 800px;
-            margin-bottom: 4rem;
+            margin-bottom: clamp(1rem, 3vh, 4rem);
+            flex-shrink: 0;
         }
 
         .hero-badge {
@@ -262,12 +344,12 @@
             gap: 0.5rem;
             background: rgba(127, 219, 202, 0.15);
             border: 1px solid rgba(127, 219, 202, 0.3);
-            padding: 0.5rem 1rem;
+            padding: clamp(0.35rem, 0.8vh, 0.5rem) clamp(0.75rem, 1.5vw, 1rem);
             border-radius: 100px;
             color: var(--luminous-mint);
-            font-size: 0.875rem;
+            font-size: clamp(0.7rem, 1.2vw, 0.875rem);
             font-weight: 500;
-            margin-bottom: 2rem;
+            margin-bottom: clamp(0.75rem, 2vh, 2rem);
             backdrop-filter: blur(10px);
             animation: fadeInUp 0.8s ease forwards;
             opacity: 0;
@@ -283,10 +365,10 @@
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 5.5vw, 4rem);
+            font-size: clamp(1.75rem, calc(2vw + 2vh + 0.5rem), 4rem);
             color: white;
             line-height: 1.1;
-            margin-bottom: 1.5rem;
+            margin-bottom: clamp(0.5rem, 1.5vh, 1.5rem);
             animation: fadeInUp 0.8s ease 0.2s forwards;
             opacity: 0;
         }
@@ -299,11 +381,11 @@
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
+            font-size: clamp(0.85rem, calc(0.5vw + 0.5vh + 0.5rem), 1.2rem);
             color: var(--text-muted);
             max-width: 550px;
-            margin: 0 auto 2.5rem;
-            line-height: 1.7;
+            margin: 0 auto clamp(1rem, 2.5vh, 2.5rem);
+            line-height: 1.6;
             animation: fadeInUp 0.8s ease 0.4s forwards;
             opacity: 0;
         }
@@ -320,10 +402,10 @@
         .btn-primary {
             background: linear-gradient(135deg, var(--amber), var(--amber-light));
             color: var(--charcoal);
-            padding: 1rem 2rem;
+            padding: clamp(0.6rem, 1.2vh, 1rem) clamp(1.25rem, 2.5vw, 2rem);
             border-radius: 100px;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: clamp(0.8rem, calc(0.3vw + 0.3vh + 0.5rem), 1rem);
             text-decoration: none;
             transition: all 0.3s ease;
             display: inline-flex;
@@ -343,10 +425,10 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2);
             color: white;
-            padding: 1rem 2rem;
+            padding: clamp(0.6rem, 1.2vh, 1rem) clamp(1.25rem, 2.5vw, 2rem);
             border-radius: 100px;
             font-weight: 500;
-            font-size: 1rem;
+            font-size: clamp(0.8rem, calc(0.3vw + 0.3vh + 0.5rem), 1rem);
             text-decoration: none;
             transition: all 0.3s ease;
             display: inline-flex;
@@ -364,14 +446,21 @@
             position: relative;
             z-index: 2;
             width: 100%;
-            max-width: 900px;
+            max-width: min(900px, 85vw);
+            flex-shrink: 0;
             animation: fadeInUp 1s ease 0.8s forwards;
             opacity: 0;
         }
 
+        @media (max-width: 768px) {
+            .video-showcase {
+                max-width: 95vw;
+            }
+        }
+
         .video-box {
             position: relative;
-            border-radius: 32px;
+            border-radius: clamp(16px, 3vw, 32px);
             overflow: visible;
             padding: 4px;
             background: linear-gradient(
@@ -399,7 +488,7 @@
             content: '';
             position: absolute;
             inset: -2px;
-            border-radius: 34px;
+            border-radius: clamp(18px, 3.2vw, 34px);
             background: radial-gradient(
                 ellipse at center,
                 transparent 50%,
@@ -426,7 +515,7 @@
             content: '';
             position: absolute;
             inset: 8px;
-            border-radius: 26px;
+            border-radius: clamp(10px, 2.3vw, 26px);
             box-shadow:
                 inset 0 0 60px rgba(0, 0, 0, 0.4),
                 inset 0 0 120px rgba(26, 47, 42, 0.3);
@@ -436,7 +525,7 @@
 
         .video-inner {
             position: relative;
-            border-radius: 28px;
+            border-radius: clamp(12px, 2.5vw, 28px);
             overflow: hidden;
             background: linear-gradient(
                 180deg,
@@ -447,7 +536,20 @@
 
         .video-container {
             position: relative;
-            aspect-ratio: 16/9;
+            aspect-ratio: 16 / 9;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .video-container {
+                aspect-ratio: 4 / 3;
+            }
+        }
+
+        @media (max-width: 768px) and (min-height: 700px) {
+            .video-container {
+                aspect-ratio: 3 / 4;
+            }
         }
 
         /* Vignette overlay on video */
@@ -476,7 +578,7 @@
                 inset 0 0 150px 60px rgba(26, 47, 42, 0.3);
             pointer-events: none;
             z-index: 6;
-            border-radius: 28px;
+            border-radius: clamp(12px, 2.5vw, 28px);
         }
 
         .hero-video {
@@ -517,19 +619,7 @@
         }
 
         .hero-scroll {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-            color: var(--text-muted);
-            font-size: 0.875rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            animation: fadeIn 1s ease 1.2s forwards;
-            opacity: 0;
+            display: none;
         }
 
         .scroll-line {
@@ -1286,8 +1376,12 @@
                 display: none;
             }
 
-            .hero {
-                padding: 8rem 1.5rem 4rem;
+            .hamburger {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
             }
 
             .problem-section,
@@ -1302,20 +1396,46 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .video-box {
-                border-radius: 20px;
+            .hero-ctas {
+                gap: 0.5rem;
+            }
+        }
+
+        /* Very short screens / landscape phones */
+        @media (max-height: 600px) {
+            .hero {
+                padding-top: clamp(3.5rem, 8vh, 5rem);
             }
 
-            .video-box::after {
-                border-radius: 16px;
+            .hero-badge {
+                margin-bottom: 0.5rem;
             }
 
-            .video-inner {
-                border-radius: 18px;
+            .hero h1 {
+                font-size: clamp(1.25rem, calc(1.5vw + 1.5vh + 0.25rem), 2.5rem);
+                margin-bottom: 0.4rem;
             }
 
-            .video-container::after {
-                border-radius: 18px;
+            .hero-subtitle {
+                font-size: clamp(0.7rem, calc(0.4vw + 0.4vh + 0.4rem), 1rem);
+                margin-bottom: 0.75rem;
+                line-height: 1.4;
+            }
+
+            .hero-content {
+                margin-bottom: 0.75rem;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 0.5rem 1rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Very tall narrow screens */
+        @media (min-height: 900px) and (max-width: 500px) {
+            .hero h1 {
+                font-size: clamp(1.5rem, 6vw, 2.5rem);
             }
         }
     </style>
@@ -1337,7 +1457,20 @@
             <a href="#compliance">Compliance</a>
             <a href="#pricing" class="nav-cta">Get Your Kit</a>
         </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#how">How It Works</a>
+        <a href="#technology">Technology</a>
+        <a href="#compliance">Compliance</a>
+        <a href="#pricing" class="nav-cta">Get Your Kit</a>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1354,8 +1487,8 @@
 
         <div class="hero-content">
             <div class="hero-badge">California AB455 Compliant</div>
-            <h1>Smoke Leaves Evidence.<br><span>We Help You Find It.</span></h1>
-            <p class="hero-subtitle">Lab-grade detection kits that protect your property value and provide the documentation you need for complete peace of mind.</p>
+            <h1>Smoke Leaves Evidence<br><span>We Help You Find It</span></h1>
+            <p class="hero-subtitle">Lab-grade detection kits that protect your property value and provide you documentation for complete peace of mind</p>
             <div class="hero-ctas">
                 <a href="#pricing" class="btn-primary">
                     Get Your Kit
@@ -1788,12 +1921,31 @@
             const orbs = document.querySelectorAll('.bokeh-orb');
             const x = e.clientX / window.innerWidth;
             const y = e.clientY / window.innerHeight;
-            
+
             orbs.forEach((orb, index) => {
                 const speed = (index + 1) * 10;
                 const xMove = (x - 0.5) * speed;
                 const yMove = (y - 0.5) * speed;
                 orb.style.transform = `translate(${xMove}px, ${yMove}px)`;
+            });
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
             });
         });
     </script>
