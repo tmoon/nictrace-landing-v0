@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NicTrace | Smoke Detection Kits | AB455 Compliant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-sage: #1a2f2a;
+            --sage-mid: #2d4a44;
+            --sage-light: #3d5f57;
+            --warm-stone: #f5f0e8;
+            --stone-dark: #e8e0d4;
+            --luminous-mint: #7fdbca;
+            --mint-glow: #5ec4b0;
+            --charcoal: #1c1c1e;
+            --amber: #d4a574;
+            --amber-light: #e6c19a;
+            --text-primary: #1c1c1e;
+            --text-secondary: #4a4a4a;
+            --text-light: rgba(255,255,255,0.9);
+            --text-muted: rgba(255,255,255,0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--warm-stone);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Fraunces', serif;
+            font-weight: 500;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(26, 47, 42, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 4rem;
+        }
+
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--luminous-mint), var(--mint-glow));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--amber), var(--amber-light));
+            color: var(--charcoal) !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: 100px;
+            font-weight: 600 !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.4);
+        }
+
+        /* Hero Section - Redesigned */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            padding: 10rem 4rem 6rem;
+            background: linear-gradient(180deg, var(--deep-sage) 0%, #15241f 60%, var(--charcoal) 100%);
+            background-size: 100% 200%;
+            animation: gradientShift 12s ease-in-out infinite;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 0% 100%;
+            }
+        }
+
+        /* Bokeh Background */
+        .bokeh-container {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .bokeh-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.5;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .bokeh-orb:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(127, 219, 202, 0.4), transparent 70%);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .bokeh-orb:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.35), transparent 70%);
+            top: 30%;
+            right: 15%;
+            animation-delay: -5s;
+        }
+
+        .bokeh-orb:nth-child(3) {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(127, 219, 202, 0.3), transparent 70%);
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        .bokeh-orb:nth-child(4) {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(94, 196, 176, 0.25), transparent 70%);
+            bottom: 10%;
+            right: 10%;
+            animation-delay: -15s;
+        }
+
+        .bokeh-orb:nth-child(5) {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.3), transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -7s;
+        }
+
+        .bokeh-orb:nth-child(6) {
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(127, 219, 202, 0.35), transparent 70%);
+            top: 15%;
+            right: 30%;
+            animation-delay: -12s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(30px, -30px) scale(1.05);
+            }
+            50% {
+                transform: translate(-20px, 20px) scale(0.95);
+            }
+            75% {
+                transform: translate(-30px, -20px) scale(1.02);
+            }
+        }
+
+        /* Small bokeh particles */
+        .bokeh-particles {
+            position: absolute;
+            inset: 0;
+        }
+
+        .bokeh-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            filter: blur(2px);
+            animation: twinkle 4s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.2); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 4rem;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(127, 219, 202, 0.15);
+            border: 1px solid rgba(127, 219, 202, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            color: var(--luminous-mint);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--luminous-mint);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5.5vw, 4rem);
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--luminous-mint), var(--amber-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 550px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--amber), var(--amber-light));
+            color: var(--charcoal);
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 165, 116, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            font-weight: 500;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        /* Video Box - Sophisticated Vignette Container */
+        .video-showcase {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 900px;
+            animation: fadeInUp 1s ease 0.8s forwards;
+            opacity: 0;
+        }
+
+        .video-box {
+            position: relative;
+            border-radius: 32px;
+            overflow: visible;
+            padding: 4px;
+            background: linear-gradient(
+                135deg,
+                rgba(127, 219, 202, 0.4) 0%,
+                rgba(45, 74, 68, 0.6) 25%,
+                rgba(212, 165, 116, 0.35) 50%,
+                rgba(45, 74, 68, 0.6) 75%,
+                rgba(127, 219, 202, 0.4) 100%
+            );
+            background-size: 300% 300%;
+            animation: vignetteGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes vignetteGlow {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .video-box::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 34px;
+            background: radial-gradient(
+                ellipse at center,
+                transparent 50%,
+                rgba(127, 219, 202, 0.15) 70%,
+                rgba(212, 165, 116, 0.1) 100%
+            );
+            filter: blur(20px);
+            z-index: -1;
+            animation: outerGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes outerGlow {
+            0% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.02);
+            }
+        }
+
+        .video-box::after {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border-radius: 26px;
+            box-shadow:
+                inset 0 0 60px rgba(0, 0, 0, 0.4),
+                inset 0 0 120px rgba(26, 47, 42, 0.3);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .video-inner {
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden;
+            background: linear-gradient(
+                180deg,
+                rgba(26, 47, 42, 0.95) 0%,
+                rgba(0, 0, 0, 0.85) 100%
+            );
+        }
+
+        .video-container {
+            position: relative;
+            aspect-ratio: 16/9;
+        }
+
+        /* Vignette overlay on video */
+        .video-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(
+                ellipse 70% 60% at center,
+                transparent 20%,
+                rgba(26, 47, 42, 0.25) 50%,
+                rgba(26, 47, 42, 0.6) 75%,
+                rgba(26, 47, 42, 0.9) 100%
+            );
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* Additional edge vignette for stronger falloff */
+        .video-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            box-shadow:
+                inset 0 0 80px 30px rgba(26, 47, 42, 0.5),
+                inset 0 0 150px 60px rgba(26, 47, 42, 0.3);
+            pointer-events: none;
+            z-index: 6;
+            border-radius: 28px;
+        }
+
+        .hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Video Glow Effect */
+        .video-glow {
+            position: absolute;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 180px;
+            background: radial-gradient(
+                ellipse,
+                rgba(127, 219, 202, 0.25) 0%,
+                rgba(212, 165, 116, 0.15) 40%,
+                transparent 70%
+            );
+            filter: blur(50px);
+            pointer-events: none;
+            animation: glowPulse 6s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                opacity: 0.8;
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1.05);
+            }
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            animation: fadeIn 1s ease 1.2s forwards;
+            opacity: 0;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(180deg, var(--luminous-mint), transparent);
+            animation: scrollPulse 2s infinite;
+        }
+
+        /* Problem Section */
+        .problem-section {
+            padding: 8rem 4rem;
+            background: var(--warm-stone);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--sage-mid);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .section-header p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .problem-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .problem-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(26, 47, 42, 0.12);
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--sage-mid), var(--luminous-mint));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .problem-card:hover::before {
+            opacity: 1;
+        }
+
+        .problem-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(45, 74, 68, 0.1), rgba(127, 219, 202, 0.1));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .problem-stat {
+            font-family: 'Fraunces', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--sage-mid);
+            margin-bottom: 0.5rem;
+        }
+
+        .problem-card h3 {
+            font-size: 1.25rem;
+            color: var(--charcoal);
+            margin-bottom: 0.75rem;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+        }
+
+        .problem-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* How It Works Section */
+        .how-section {
+            padding: 8rem 4rem;
+            background: linear-gradient(180deg, var(--deep-sage) 0%, var(--sage-mid) 100%);
+            position: relative;
+        }
+
+        .how-section .section-header h2,
+        .how-section .section-header p,
+        .how-section .section-label {
+            color: white;
+        }
+
+        .how-section .section-label {
+            color: var(--luminous-mint);
+        }
+
+        .how-section .section-header p {
+            color: var(--text-muted);
+        }
+
+        .steps-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            position: relative;
+        }
+
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 80px;
+            left: 15%;
+            right: 15%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--luminous-mint), transparent);
+            opacity: 0.3;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--luminous-mint), var(--mint-glow));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-family: 'Fraunces', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--deep-sage);
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 40px rgba(127, 219, 202, 0.3);
+        }
+
+        .step-card h3 {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .step-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* Technology Section */
+        .tech-section {
+            padding: 8rem 4rem;
+            background: var(--warm-stone);
+            position: relative;
+        }
+
+        .tech-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .tech-visual {
+            position: relative;
+        }
+
+        .tech-card-main {
+            background: white;
+            border-radius: 32px;
+            padding: 3rem;
+            box-shadow: 0 30px 80px rgba(26, 47, 42, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card-main::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(127, 219, 202, 0.2), transparent);
+            border-radius: 50%;
+        }
+
+        .molecule-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .molecule-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(45, 74, 68, 0.05), rgba(127, 219, 202, 0.05));
+            border-radius: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .molecule-item:hover {
+            transform: scale(1.05);
+        }
+
+        .molecule-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .molecule-name {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+
+        .molecule-desc {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .sensitivity-bar {
+            background: linear-gradient(90deg, var(--sage-mid), var(--luminous-mint));
+            height: 8px;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sensitivity-bar::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        .sensitivity-label {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.75rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .tech-text h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .tech-text > p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .tech-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .tech-feature {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .tech-feature-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--luminous-mint), var(--mint-glow));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .tech-feature-icon svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--deep-sage);
+        }
+
+        .tech-feature p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .tech-feature strong {
+            color: var(--charcoal);
+        }
+
+        /* Compliance Section */
+        .compliance-section {
+            padding: 8rem 4rem;
+            background: var(--charcoal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .compliance-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(127, 219, 202, 0.1), transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(212, 165, 116, 0.1), transparent 50%);
+        }
+
+        .compliance-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .compliance-text h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .compliance-text > p {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .compliance-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(127, 219, 202, 0.1);
+            border: 1px solid rgba(127, 219, 202, 0.3);
+            padding: 1.25rem 2rem;
+            border-radius: 16px;
+        }
+
+        .compliance-badge-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--luminous-mint), var(--mint-glow));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .compliance-badge-text {
+            color: white;
+        }
+
+        .compliance-badge-text strong {
+            display: block;
+            font-size: 1.125rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .compliance-badge-text span {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .compliance-visual {
+            position: relative;
+        }
+
+        .doc-preview {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+            transform: rotate(2deg);
+            transition: transform 0.4s ease;
+        }
+
+        .doc-preview:hover {
+            transform: rotate(0deg);
+        }
+
+        .doc-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .doc-logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--sage-mid), var(--luminous-mint));
+            border-radius: 10px;
+        }
+
+        .doc-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1.125rem;
+            color: var(--charcoal);
+        }
+
+        .doc-subtitle {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .doc-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .doc-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem;
+            background: rgba(245, 240, 232, 0.5);
+            border-radius: 8px;
+        }
+
+        .doc-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .doc-value {
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+
+        .doc-value.pass {
+            color: var(--mint-glow);
+        }
+
+        .doc-stamp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, rgba(127, 219, 202, 0.1), rgba(45, 74, 68, 0.1));
+            border-radius: 12px;
+            border: 2px dashed var(--sage-mid);
+        }
+
+        .doc-stamp span {
+            font-weight: 600;
+            color: var(--sage-mid);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 4rem;
+            background: linear-gradient(180deg, var(--warm-stone), var(--stone-dark));
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .cta-content > p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(26, 47, 42, 0.12);
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--luminous-mint);
+        }
+
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--luminous-mint), var(--mint-glow));
+            color: var(--deep-sage);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.35rem 1rem;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .pricing-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-desc {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-price {
+            font-family: 'Fraunces', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--sage-mid);
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-price span {
+            font-size: 1rem;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .pricing-features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .pricing-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .pricing-feature svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--luminous-mint);
+            flex-shrink: 0;
+        }
+
+        .pricing-card .btn-primary {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem;
+            background: var(--deep-sage);
+            color: var(--text-muted);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-copy {
+            font-size: 0.875rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { transform: scaleY(1); opacity: 1; }
+            50% { transform: scaleY(0.6); opacity: 0.5; }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Scroll animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .tech-content,
+            .compliance-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-container::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 8rem 1.5rem 4rem;
+            }
+
+            .problem-section,
+            .how-section,
+            .tech-section,
+            .compliance-section,
+            .cta-section {
+                padding: 5rem 1.5rem;
+            }
+
+            .molecule-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .video-box {
+                border-radius: 20px;
+            }
+
+            .video-box::after {
+                border-radius: 16px;
+            }
+
+            .video-inner {
+                border-radius: 18px;
+            }
+
+            .video-container::after {
+                border-radius: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">
+            <div class="logo-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a2f2a" stroke-width="2.5">
+                    <path d="M12 2v6m0 8v6m-6-10h6m2 0h6"/>
+                </svg>
+            </div>
+            NicTrace
+        </a>
+        <div class="nav-links">
+            <a href="#how">How It Works</a>
+            <a href="#technology">Technology</a>
+            <a href="#compliance">Compliance</a>
+            <a href="#pricing" class="nav-cta">Get Your Kit</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Bokeh Background -->
+        <div class="bokeh-container">
+            <div class="bokeh-orb"></div>
+            <div class="bokeh-orb"></div>
+            <div class="bokeh-orb"></div>
+            <div class="bokeh-orb"></div>
+            <div class="bokeh-orb"></div>
+            <div class="bokeh-orb"></div>
+            <div class="bokeh-particles" id="bokehParticles"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge">California AB455 Compliant</div>
+            <h1>Smoke Leaves Evidence.<br><span>We Help You Find It.</span></h1>
+            <p class="hero-subtitle">Lab-grade detection kits that protect your property value and provide the documentation you need for complete peace of mind.</p>
+            <div class="hero-ctas">
+                <a href="#pricing" class="btn-primary">
+                    Get Your Kit
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14m-6-6l6 6-6 6"/>
+                    </svg>
+                </a>
+                <a href="#how" class="btn-secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polygon points="10,8 16,12 10,16" fill="currentColor"/>
+                    </svg>
+                    See How It Works
+                </a>
+            </div>
+        </div>
+
+        <!-- Video Showcase -->
+        <div class="video-showcase">
+            <div class="video-box">
+                <div class="video-inner">
+                    <div class="video-container">
+                        <video class="hero-video" autoplay muted loop playsinline>
+                            <source src="nictrace-hero.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+            <div class="video-glow"></div>
+        </div>
+
+        <div class="hero-scroll">
+            <span>Scroll to explore</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="section-header reveal">
+            <span class="section-label">The Challenge</span>
+            <h2>The Hidden Cost of Smoke Damage</h2>
+            <p>Smoke and nicotine residue silently depreciate property value, create liability exposure, and lead to costly disputes—often without visible evidence.</p>
+        </div>
+        <div class="problem-grid">
+            <div class="problem-card reveal">
+                <div class="problem-icon">💰</div>
+                <div class="problem-stat">$15K+</div>
+                <h3>Average Remediation Cost</h3>
+                <p>Smoke damage restoration can cost property owners thousands, with deep-penetrating residue requiring professional treatment.</p>
+            </div>
+            <div class="problem-card reveal">
+                <div class="problem-icon">👁️</div>
+                <div class="problem-stat">Invisible</div>
+                <h3>Hidden Contamination</h3>
+                <p>Nicotine residue embeds in walls, HVAC systems, and fabrics—often undetectable until yellowing appears months later.</p>
+            </div>
+            <div class="problem-card reveal">
+                <div class="problem-icon">⚖️</div>
+                <div class="problem-stat">Liability</div>
+                <h3>Legal Exposure</h3>
+                <p>Without documented testing, property managers face deposit disputes and compliance risks under California AB455.</p>
+            </div>
+            <div class="problem-card reveal">
+                <div class="problem-icon">📉</div>
+                <div class="problem-stat">-12%</div>
+                <h3>Property Depreciation</h3>
+                <p>Properties with smoke history sell for significantly less, with disclosure requirements affecting marketability.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-section" id="how">
+        <div class="section-header reveal">
+            <span class="section-label">Simple Process</span>
+            <h2>Three Steps to Certainty</h2>
+            <p>Professional-grade detection made accessible. No lab appointments, no waiting weeks for results.</p>
+        </div>
+        <div class="steps-container">
+            <div class="step-card reveal">
+                <div class="step-number">1</div>
+                <h3>Swab</h3>
+                <p>Use the included collection swabs on key surfaces—walls, ceilings, HVAC vents, and window frames where residue concentrates.</p>
+            </div>
+            <div class="step-card reveal">
+                <div class="step-number">2</div>
+                <h3>Test</h3>
+                <p>Apply the reagent solution and watch for color change within minutes. Our detection threshold meets lab-grade sensitivity standards.</p>
+            </div>
+            <div class="step-card reveal">
+                <div class="step-number">3</div>
+                <h3>Document</h3>
+                <p>Record results using our compliance template. Timestamped documentation provides the evidence you need for AB455 requirements.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="tech-section" id="technology">
+        <div class="tech-content">
+            <div class="tech-visual reveal">
+                <div class="tech-card-main">
+                    <div class="molecule-grid">
+                        <div class="molecule-item">
+                            <div class="molecule-icon">🔬</div>
+                            <div class="molecule-name">Nicotine</div>
+                            <div class="molecule-desc">Primary marker</div>
+                        </div>
+                        <div class="molecule-item">
+                            <div class="molecule-icon">⚗️</div>
+                            <div class="molecule-name">Cotinine</div>
+                            <div class="molecule-desc">Metabolite</div>
+                        </div>
+                        <div class="molecule-item">
+                            <div class="molecule-icon">🧪</div>
+                            <div class="molecule-name">Tar Residue</div>
+                            <div class="molecule-desc">Combustion</div>
+                        </div>
+                        <div class="molecule-item">
+                            <div class="molecule-icon">💨</div>
+                            <div class="molecule-name">Aldehydes</div>
+                            <div class="molecule-desc">Vape detection</div>
+                        </div>
+                        <div class="molecule-item">
+                            <div class="molecule-icon">🌿</div>
+                            <div class="molecule-name">Cannabis</div>
+                            <div class="molecule-desc">THC markers</div>
+                        </div>
+                        <div class="molecule-item">
+                            <div class="molecule-icon">✓</div>
+                            <div class="molecule-name">Multi-Spectrum</div>
+                            <div class="molecule-desc">Full coverage</div>
+                        </div>
+                    </div>
+                    <div class="sensitivity-bar"></div>
+                    <div class="sensitivity-label">
+                        <span>Detection threshold: 40 μg/m²</span>
+                        <span>Lab-grade accuracy</span>
+                    </div>
+                </div>
+            </div>
+            <div class="tech-text reveal">
+                <span class="section-label">Detection Technology</span>
+                <h2>Science You Can Trust</h2>
+                <p>Our reagent chemistry detects multiple smoke markers at concentrations far below visible residue—catching contamination early, before costly damage sets in.</p>
+                <div class="tech-features">
+                    <div class="tech-feature">
+                        <div class="tech-feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20,6 9,17 4,12"/>
+                            </svg>
+                        </div>
+                        <p><strong>Multi-compound detection</strong> identifies nicotine, tar, and vape-specific aldehydes in a single test</p>
+                    </div>
+                    <div class="tech-feature">
+                        <div class="tech-feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20,6 9,17 4,12"/>
+                            </svg>
+                        </div>
+                        <p><strong>40 μg/m² sensitivity</strong> matches professional laboratory standards for surface contamination</p>
+                    </div>
+                    <div class="tech-feature">
+                        <div class="tech-feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20,6 9,17 4,12"/>
+                            </svg>
+                        </div>
+                        <p><strong>Results in minutes</strong> with clear color-change indicators—no ambiguous readings</p>
+                    </div>
+                    <div class="tech-feature">
+                        <div class="tech-feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20,6 9,17 4,12"/>
+                            </svg>
+                        </div>
+                        <p><strong>Cannabis-ready</strong> formula detects THC combustion byproducts alongside traditional tobacco</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compliance Section -->
+    <section class="compliance-section" id="compliance">
+        <div class="compliance-content">
+            <div class="compliance-text reveal">
+                <span class="section-label" style="color: var(--luminous-mint);">Legal Protection</span>
+                <h2>AB455 Compliant Documentation</h2>
+                <p>California Assembly Bill 455 requires landlords to provide specific disclosures about smoking policies and testing. NicTrace kits include everything you need to meet these requirements and protect yourself in disputes.</p>
+                <div class="compliance-badge">
+                    <div class="compliance-badge-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a2f2a" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <polyline points="9,12 11,14 15,10"/>
+                        </svg>
+                    </div>
+                    <div class="compliance-badge-text">
+                        <strong>California AB455 Ready</strong>
+                        <span>Meets all disclosure requirements</span>
+                    </div>
+                </div>
+            </div>
+            <div class="compliance-visual reveal">
+                <div class="doc-preview">
+                    <div class="doc-header">
+                        <div class="doc-logo"></div>
+                        <div>
+                            <div class="doc-title">Smoke Detection Report</div>
+                            <div class="doc-subtitle">NicTrace Compliance Documentation</div>
+                        </div>
+                    </div>
+                    <div class="doc-content">
+                        <div class="doc-row">
+                            <span class="doc-label">Property Address</span>
+                            <span class="doc-value">1234 Oak Street, Unit 5B</span>
+                        </div>
+                        <div class="doc-row">
+                            <span class="doc-label">Test Date</span>
+                            <span class="doc-value">December 18, 2025</span>
+                        </div>
+                        <div class="doc-row">
+                            <span class="doc-label">Nicotine Detection</span>
+                            <span class="doc-value pass">Below Threshold ✓</span>
+                        </div>
+                        <div class="doc-row">
+                            <span class="doc-label">THC Detection</span>
+                            <span class="doc-value pass">Not Detected ✓</span>
+                        </div>
+                        <div class="doc-row">
+                            <span class="doc-label">Report ID</span>
+                            <span class="doc-value">NT-2025-48291</span>
+                        </div>
+                    </div>
+                    <div class="doc-stamp">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--sage-mid)" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="9,12 11,14 15,10"/>
+                        </svg>
+                        <span>AB455 Compliant</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="pricing">
+        <div class="cta-content">
+            <div class="section-header reveal">
+                <span class="section-label">Get Started</span>
+                <h2>Protect Your Investment</h2>
+                <p>Choose the kit that fits your needs. All kits include AB455-compliant documentation templates and detailed instructions.</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card reveal">
+                    <div class="pricing-name">Single Unit</div>
+                    <div class="pricing-desc">Perfect for individual properties</div>
+                    <div class="pricing-price">$49 <span>per kit</span></div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20,6 9,17 4,12"/>
+                            </svg>
+                            <span>5 surface test swabs</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20,6 9,17 4,12"/>
+                            </svg>
+                            <span>Reagent solution</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20,6 9,17 4,12"/>
+                            </svg>
+                            <span>Documentation template</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20,6 9,17 4,12"/>
+                            </svg>
+                            <span>Photo guide included</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn-primary">Order Now</a>
+                </div>
+                <div class="pricing-card featured reveal">
+                    <div class="pricing-name">Property Manager</div>
+                    <div class="pricing-desc">For portfolios up to 10 units</div>
+                    <div class="pricing-price">$199 <span>10 kits</span></div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20,6 9,17 4,12"/>
+                            </svg>
+                            <span>10 complete testing kits</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20,6 9,17 4,12"/>
+                            </svg>
+                            <span>Bulk documentation system</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20,6 9,17 4,12"/>
+                            </svg>
+                            <span>Training video access</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20,6 9,17 4,12"/>
+                            </svg>
+                            <span>Priority support</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn-primary">Order Now</a>
+                </div>
+                <div class="pricing-card reveal">
+                    <div class="pricing-name">Enterprise</div>
+                    <div class="pricing-desc">Large portfolios & custom needs</div>
+                    <div class="pricing-price">Custom</div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20,6 9,17 4,12"/>
+                            </svg>
+                            <span>Volume pricing</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20,6 9,17 4,12"/>
+                            </svg>
+                            <span>Custom branding available</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20,6 9,17 4,12"/>
+                            </svg>
+                            <span>Dedicated account manager</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20,6 9,17 4,12"/>
+                            </svg>
+                            <span>API integration</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn-primary" style="background: var(--charcoal); color: white;">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">NicTrace</div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="footer-copy">© 2025 NicTrace. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Generate bokeh particles
+        const particlesContainer = document.getElementById('bokehParticles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'bokeh-particle';
+            particle.style.width = Math.random() * 8 + 4 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 4 + 's';
+            particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll reveal animations
+        const reveals = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const revealPoint = 150;
+
+                if (elementTop < windowHeight - revealPoint) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for bokeh orbs
+        window.addEventListener('mousemove', (e) => {
+            const orbs = document.querySelectorAll('.bokeh-orb');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            orbs.forEach((orb, index) => {
+                const speed = (index + 1) * 10;
+                const xMove = (x - 0.5) * speed;
+                const yMove = (y - 0.5) * speed;
+                orb.style.transform = `translate(${xMove}px, ${yMove}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
